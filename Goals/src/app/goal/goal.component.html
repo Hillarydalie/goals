@@ -13,7 +13,7 @@
   <div class="col-md-6">
     <ul>
       <div *ngFor='let goal of goals;let i = index'>
-        <li appStrikethrough>{{goal.id}}. {{goal.name}}, {{goal.completeDate|dateCount}}.</li>
+        <li appStrikethrough>{{goal.id}}. {{goal.name}}, {{goal.completeDate|date|uppercase}}.</li>
         <button (click)='toggleDetails(i)'  class="btn btn-outline-primary btn-sm">Toggle Details</button>
         <app-goal-detail *ngIf='goal.showDescription' [goal]='goal' (isComplete) = 'deleteGoal($event,i)'></app-goal-detail>
       </div>
@@ -24,7 +24,7 @@
   </div>
   <!-- Form Component -->
   <div class="col-md-6">
-      <app-goal-form></app-goal-form>
+      <app-goal-form (addGoal)="addNewGoal($event)"></app-goal-form>
   </div>
 </div>
 
